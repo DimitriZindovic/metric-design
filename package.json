@@ -1,6 +1,16 @@
 {
   "name": "metric-design",
   "version": "0.1.0",
+  "description": "Design system components",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
