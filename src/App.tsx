@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import ProgressLinear from './components/ProgressLinear/ProgressLinear';
 import Button from './components/Button';
+import ProgressCircular from './components/ProgressCircular/ProgressCircular';
 import Title from './components/Title/Title';
 
 const App = () => {
-  const [progress, setProgress] = useState(0);
+  const [progressLinear, setProgressLinear] = useState(0);
+  const [progressCircular, setProgressCircular] = useState<number>(0);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress(p => (p >= 100 ? 0 : p + 1));
+      setProgressLinear(p => (p >= 100 ? 0 : p + 1));
     }, 50);
     return () => clearInterval(interval);
+  }, []);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgressCircular(p => (p >= 100 ? 0 : p + 1));
+    }, 50);
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -37,22 +47,22 @@ const App = () => {
         }}
       >
         <h3>1. Barre normale (progression dynamique)</h3>
-        <ProgressLinear progress={progress} showPercentage />
+        <ProgressLinear progress={progressCircular} showPercentage />
 
         <h3>2. Taille réduite (largeur & hauteur)</h3>
         <ProgressLinear
-          progress={progress}
+          progress={progressCircular}
           size={150}
           height={8}
           progressColor='#0099ff'
           showPercentage
         />
         <h3>3. Progression sans pourcentage affiché</h3>
-        <ProgressLinear progress={progress} showPercentage={false} />
+        <ProgressLinear progress={progressCircular} showPercentage={false} />
 
         <h3>4. Couleurs personnalisées</h3>
         <ProgressLinear
-          progress={progress}
+          progress={progressCircular}
           backgroundColor='#222'
           progressColor='#ff9900'
           showPercentage
@@ -64,6 +74,42 @@ const App = () => {
 
         <h3>6. Barre statique avec pourcentage définis</h3>
         <ProgressLinear progress={70} showPercentage />
+      </div>
+
+      
+      <div
+        style={{
+          padding: 20,
+          maxWidth: 400,
+          gap: 16,
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+      <h3>1. Progression circulaire dynamique </h3>
+      <ProgressCircular progress={progressLinear} />
+
+      <h3>2. Taille réduite</h3>
+      <ProgressCircular
+        progress={progressLinear}
+        size={100}
+        strokeWidth={6}
+        percentageFontSize={20}
+      />
+
+      <h3>3. Sans pourcentage affiché</h3>
+      <ProgressCircular progress={progressLinear} showPercentage={false} />
+
+      <h3>4. Couleurs personnalisées</h3>
+      <ProgressCircular
+        progress={progressLinear}
+        circleOneStroke='#222'
+        circleTwoStroke='#ff9900'
+      />
+
+      <h3>5. Progression circulaire statique avec pourcentage définis</h3>
+      <ProgressCircular progress={70} percentageFontSize={30} />
+       
       </div>
     </>
   );
