@@ -8,14 +8,13 @@ const App = () => {
   const [progressLinear, setProgressLinear] = useState(0);
   const [progressCircular, setProgressCircular] = useState<number>(0);
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       setProgressLinear(p => (p >= 100 ? 0 : p + 1));
     }, 50);
     return () => clearInterval(interval);
   }, []);
-  
+
   useEffect(() => {
     const timer = setInterval(() => {
       setProgressCircular(p => (p >= 100 ? 0 : p + 1));
@@ -76,7 +75,6 @@ const App = () => {
         <ProgressLinear progress={70} showPercentage />
       </div>
 
-      
       <div
         style={{
           padding: 20,
@@ -86,30 +84,29 @@ const App = () => {
           flexDirection: 'column',
         }}
       >
-      <h3>1. Progression circulaire dynamique </h3>
-      <ProgressCircular progress={progressLinear} />
+        <h3>1. Progression circulaire dynamique </h3>
+        <ProgressCircular progress={progressLinear} />
 
-      <h3>2. Taille réduite</h3>
-      <ProgressCircular
-        progress={progressLinear}
-        size={100}
-        strokeWidth={6}
-        percentageFontSize={20}
-      />
+        <h3>2. Taille réduite</h3>
+        <ProgressCircular
+          progress={progressLinear}
+          size={100}
+          strokeWidth={6}
+          percentageFontSize={20}
+        />
 
-      <h3>3. Sans pourcentage affiché</h3>
-      <ProgressCircular progress={progressLinear} showPercentage={false} />
+        <h3>3. Sans pourcentage affiché</h3>
+        <ProgressCircular progress={progressLinear} showPercentage={false} />
 
-      <h3>4. Couleurs personnalisées</h3>
-      <ProgressCircular
-        progress={progressLinear}
-        circleOneStroke='#222'
-        circleTwoStroke='#ff9900'
-      />
+        <h3>4. Couleurs personnalisées</h3>
+        <ProgressCircular
+          progress={progressLinear}
+          circleOneStroke='#222'
+          circleTwoStroke='#ff9900'
+        />
 
-      <h3>5. Progression circulaire statique avec pourcentage définis</h3>
-      <ProgressCircular progress={70} percentageFontSize={30} />
-       
+        <h3>5. Progression circulaire statique avec pourcentage définis</h3>
+        <ProgressCircular progress={70} percentageFontSize={30} />
       </div>
     </>
   );
