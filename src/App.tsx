@@ -1,21 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from './components/Button';
+import ProgressCircular from './components/ProgressCircular/ProgressCircular';
 import Title from './components/Title/Title';
 
 function App() {
+  const [progress, setProgress] = useState<number>(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress(p => (p >= 100 ? 0 : p + 1));
+    }, 50);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <div>
-      <Title level={1} data-testid='title-h1'>
-        Metric Design Library
-      </Title>
-      <Title level={2} data-testid='title-h2'>
-        Composants disponibles
-      </Title>
-      <Title level={3} data-testid='title-h3'>
-        Bouton interactif
-      </Title>
-      <Button onClick={() => alert('Button clicked!')}>Click Me!</Button>
-    </div>
+    <>
+      <div>
+        <Title level={1} data-testid='title-h1'>
+          Metric Design Library
+        </Title>
+        <Title level={2} data-testid='title-h2'>
+          Composants disponibles
+        </Title>
+        <Title level={3} data-testid='title-h3'>
+          Bouton interactif
+        </Title>
+        <Button onClick={() => alert('Button clicked!')}>Click Me!</Button>
+      </div>
+
+      <h3>1. Progression circulaire dynamique </h3>
+      <ProgressCircular progress={progress} />
+
+      <h3>2. Taille réduite</h3>
+      <ProgressCircular
+        progress={progress}
+        size={100}
+        strokeWidth={6}
+        percentageFontSize={20}
+      />
+
+      <h3>3. Sans pourcentage affiché</h3>
+      <ProgressCircular progress={progress} showPercentage={false} />
+
+      <h3>4. Couleurs personnalisées</h3>
+      <ProgressCircular
+        progress={progress}
+        circleOneStroke='#222'
+        circleTwoStroke='#ff9900'
+      />
+
+      <h3>5. Progression circulaire statique avec pourcentage définis</h3>
+      <ProgressCircular progress={70} percentageFontSize={30} />
+    </>
   );
 }
 
