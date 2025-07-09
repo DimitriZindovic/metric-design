@@ -1,5 +1,6 @@
 import React from "react";
-import Button from "./Components/Button/button";
+import Button from "./components/Button/button";
+
 
 function App() {
     return <Button onClick={() => alert("Button clicked!")}>
