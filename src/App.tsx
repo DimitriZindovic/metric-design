@@ -66,7 +66,6 @@ const App = () => {
         <ProgressLinear progress={70} showPercentage />
       </div>
     </>
-
   );
 };
 
