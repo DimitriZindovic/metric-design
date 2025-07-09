@@ -19,7 +19,7 @@ function App() {
       <h3>1. Progression circulaire dynamique </h3>
       <ProgressCircular progress={progress} />
 
-      <h3>3. Taille réduite (100px, stroke 6)</h3>
+      <h3>2. Taille réduite</h3>
       <ProgressCircular
         progress={progress}
         size={100}
@@ -27,17 +27,17 @@ function App() {
         percentageFontSize={20}
       />
 
-      <h3>4. Sans pourcentage affiché</h3>
+      <h3>3. Sans pourcentage affiché</h3>
       <ProgressCircular progress={progress} showPercentage={false} />
 
-      <h3>2. Couleurs personnalisées</h3>
+      <h3>4. Couleurs personnalisées</h3>
       <ProgressCircular
         progress={progress}
         circleOneStroke='#222'
         circleTwoStroke='#ff9900'
       />
 
-      <h3>3. Progression circulaire statique (pourcentage pré-définie)</h3>
+      <h3>5. Progression circulaire statique avec pourcentage définis</h3>
       <ProgressCircular progress={70} percentageFontSize={30} />
     </>
   );
