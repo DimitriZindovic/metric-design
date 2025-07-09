@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Button from './components/Button';
 import ProgressCircular from './components/ProgressCircular/ProgressCircular';
+import Title from './components/Title/Title';
+
 
 function App() {
   const [progress, setProgress] = useState<number>(0);
@@ -14,7 +16,12 @@ function App() {
 
   return (
     <>
+      <div>
+      <Title level={1}>Metric Design Library</Title>
+      <Title level={2}>Composants disponibles</Title>
+      <Title level={3}>Bouton interactif</Title>
       <Button onClick={() => alert('Button clicked!')}>Click Me!</Button>
+    </div>
 
       <h3>1. Progression circulaire dynamique </h3>
       <ProgressCircular progress={progress} />
@@ -40,7 +47,6 @@ function App() {
       <h3>5. Progression circulaire statique avec pourcentage définis</h3>
       <ProgressCircular progress={70} percentageFontSize={30} />
     </>
-  );
-}
+
 
 export default App;

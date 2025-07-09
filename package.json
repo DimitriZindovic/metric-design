@@ -1,7 +1,18 @@
 {
-  "name": "metric-design",
+  "name": "@dimitrizindovic/metric-design",
   "version": "1.0.0",
-  "private": true,
+  "description": "Design system components",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "private": false,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -38,9 +49,9 @@
     "ci:lint": "npm run lint && npm run format:check && npm run type-check",
     "pre-commit": "npm run lint:fix && npm run format && npm run type-check",
     "quality": "npm run pre-commit && npm run test -- --watchAll=false",
-    "test:visual": "playwright test --config=playwright-ct.config.ts",
-    "test:visual:ui": "playwright test --config=playwright-ct.config.ts --ui",
-    "test:visual:update": "playwright test --config=playwright-ct.config.ts --update-snapshots"
+    "test:visual": "playwright test",
+    "test:visual:ui": "playwright test --ui",
+    "test:visual:update": "playwright test --update-snapshots"
   },
   "eslintConfig": {
     "extends": [
