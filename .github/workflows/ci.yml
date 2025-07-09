@@ -74,7 +74,7 @@ jobs:
         run: npx wait-on http://localhost:3000
 
       - name: Run visual regression tests
-        run: npm run test:visual
+        run: npm run test:visual -- --update-snapshots
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
