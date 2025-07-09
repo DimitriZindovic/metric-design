@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
+import Button from './components/Button';
 
 function App() {
-    return <div></div>;
+  return <Button onClick={() => alert('Button clicked!')}>Click Me!</Button>;
 }
 
 export default App;
