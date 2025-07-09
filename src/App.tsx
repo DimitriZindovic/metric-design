@@ -13,12 +13,6 @@ function App() {
   ];
   return (
     <>
-      <div>
-        <Title level={1}>Metric Design Library</Title>
-        <Title level={2}>Composants disponibles</Title>
-        <Title level={3}>Bouton interactif</Title>
-        <Button onClick={() => alert('Button clicked!')}>Click Me!</Button>
-      </div>
       <div style={{ padding: 20 }}>
         <h2>Graphique à barres simple</h2>
         <BarChart data={sampleData} width={600} height={350} />
