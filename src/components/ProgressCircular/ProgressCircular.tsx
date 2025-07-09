@@ -14,8 +14,8 @@ const ProgressCircular: React.FC<ProgressCircularProps> = ({
   size = 120,
   strokeWidth = 10,
   progress,
-  circleOneStroke = 'red',
-  circleTwoStroke = 'black',
+  circleOneStroke = '#e0e0e0',
+  circleTwoStroke = '#3b82f6',
   showPercentage = true,
   percentageFontSize,
 }) => {
