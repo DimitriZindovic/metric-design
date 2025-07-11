@@ -8,6 +8,7 @@ interface ProgressCircularProps {
   circleTwoStroke?: string; // couleur progression
   showPercentage?: boolean; // afficher le % au centre
   percentageFontSize?: number; // taille police pourcentage en px (optionnel)
+  disableAnimation?: boolean;
 }
 
 const ProgressCircular: React.FC<ProgressCircularProps> = ({
