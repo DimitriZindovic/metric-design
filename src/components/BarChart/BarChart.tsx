@@ -52,7 +52,6 @@ const BarChart: React.FC<BarChartProps> = ({
     document.body.removeChild(downloadLink);
   };
 
-  // Calculs pour vertical ou horizontal
   if (!isHorizontal) {
     // Vertical
     const scaleY = (val: number) => (val / max) * (height - margin * 1.5);
@@ -61,7 +60,12 @@ const BarChart: React.FC<BarChartProps> = ({
         <button onClick={exportSVG} style={{ marginBottom: 10 }}>
           Export SVG
         </button>
-        <svg ref={svgRef} width={width} height={height}>
+        <svg
+          ref={svgRef}
+          width={width}
+          height={height}
+          data-testid='bar-chart-svg'
+        >
           {/* Axe Y */}
           {[0, 0.25, 0.5, 0.75, 1].map(p => {
             const y = height - margin - p * (height - margin * 1.5);
@@ -163,7 +167,12 @@ const BarChart: React.FC<BarChartProps> = ({
         <button onClick={exportSVG} style={{ marginBottom: 10 }}>
           Export SVG
         </button>
-        <svg ref={svgRef} width={width} height={height}>
+        <svg
+          ref={svgRef}
+          width={width}
+          height={height}
+          data-testid='bar-chart-svg'
+        >
           {/* Axe X */}
           {[0, 0.25, 0.5, 0.75, 1].map(p => {
             const x = margin + p * (width - margin * 1.5);
