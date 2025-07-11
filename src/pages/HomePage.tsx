@@ -3,10 +3,24 @@ import ProgressLinear from '../components/ProgressLinear/ProgressLinear';
 import Button from '../components/Button';
 import ProgressCircular from '../components/ProgressCircular/ProgressCircular';
 import Title from '../components/Title/Title';
+import BarChart from '../components/BarChart/BarChart';
 
 const HomePage = () => {
   const [progressLinear, setProgressLinear] = useState(0);
   const [progressCircular, setProgressCircular] = useState<number>(0);
+
+  const sampleData = [
+    { label: 'Jan', value: 40 },
+    { label: 'Feb', value: 80 },
+    { label: 'Mar', value: 65 },
+    { label: 'Apr', value: 90 },
+    { label: 'May', value: 55, color: '#f44336' },
+  ];
+
+  const thresholds = [
+    { value: 70, label: 'Objectif', color: 'red', strokeWidth: 2 },
+    { value: 50, label: 'Moyenne', color: 'orange', strokeWidth: 1 },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,7 +39,9 @@ const HomePage = () => {
   return (
     <>
       <div>
-        <Button onClick={() => alert('Button clicked!')}>Click Me!</Button>
+        <Button data-testid='button' onClick={() => alert('Button clicked!')}>
+          Click Me!
+        </Button>
         <Title level={3} data-testid='title-h3'>
           Bouton interactif
         </Title>
@@ -107,6 +123,25 @@ const HomePage = () => {
 
         <h3>5. Progression circulaire statique avec pourcentage définis</h3>
         <ProgressCircular progress={70} percentageFontSize={30} />
+      </div>
+
+      <div style={{ padding: 20 }}>
+        <h2>Bar Chart vertical avec seuils et export</h2>
+        <BarChart
+          data={sampleData}
+          width={700}
+          height={350}
+          thresholds={thresholds}
+        />
+
+        <h2 style={{ marginTop: 40 }}>Bar Chart horizontal</h2>
+        <BarChart
+          data={sampleData}
+          width={700}
+          height={350}
+          isHorizontal
+          thresholds={thresholds}
+        />
       </div>
     </>
   );
