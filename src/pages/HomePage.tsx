@@ -39,7 +39,9 @@ const HomePage = () => {
   return (
     <>
       <div>
-        <Button onClick={() => alert('Button clicked!')}>Click Me!</Button>
+        <Button data-testid='button' onClick={() => alert('Button clicked!')}>
+          Click Me!
+        </Button>
         <Title level={3} data-testid='title-h3'>
           Bouton interactif
         </Title>
