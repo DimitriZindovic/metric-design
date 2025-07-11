@@ -1,46 +1,165 @@
-# Getting Started with Create React App
+# metric-design
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![npm version](https://badge.fury.io/js/%40noahs%2Fmetric-design.svg)](https://www.npmjs.com/package/@dimitrizindovic/metric-design?activeTab=readme)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Available Scripts
+> Librairie TypeScript pour la conception et la manipulation de métriques, pensée pour l'architecture open source et la publication sur npm.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+```bash
+npm install @dimitrizindovic/metric-design
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Utilisation
 
-### `npm test`
+### Import ES Modules
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```typescript
+import { createMetric, formatMetric, sumMetrics, isValidMetric } from '@dimitrizindovic/metric-design'
 
-### `npm run build`
+// Création d'une métrique
+const metric = createMetric('distance', 42, 'km')
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+// Validation
+console.log(isValidMetric(metric)) // true
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+// Formatage
+console.log(formatMetric(metric)) // '42 km'
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+// Somme de métriques
+console.log(sumMetrics([
+    createMetric('distance', 10, 'km'),
+    createMetric('distance', 32, 'km')
+])) // 42
+```
 
-### `npm run eject`
+### Import CommonJS
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```javascript
+const { createMetric, formatMetric } = require('@noahs/metric-design')
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `createMetric(type: string, value: number, unit: string): Metric`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Crée une nouvelle métrique.
 
-## Learn More
+**Paramètres :**
+- `type` (string) : Le type de la métrique (ex: 'distance')
+- `value` (number) : La valeur
+- `unit` (string) : L'unité (ex: 'km')
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Retourne :** Un objet `Metric`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `isValidMetric(metric: Metric): boolean`
+
+Vérifie si un objet est une métrique valide.
+
+**Paramètres :**
+- `metric` (Metric) : La métrique à valider
+
+**Retourne :** `true` si valide, sinon `false`
+
+### `formatMetric(metric: Metric): string`
+
+Formate une métrique en chaîne lisible.
+
+**Paramètres :**
+- `metric` (Metric) : La métrique à formater
+
+**Retourne :** Une chaîne formatée (ex: '42 km')
+
+### `sumMetrics(metrics: Metric[]): number`
+
+Calcule la somme des valeurs d'un tableau de métriques du même type/unité.
+
+**Paramètres :**
+- `metrics` (Metric[]) : Tableau de métriques
+
+**Retourne :** La somme des valeurs
+
+## Développement
+
+### Prérequis
+
+- Node.js >= 18.0.0
+- npm ou yarn
+
+### Installer les dépendances
+
+```bash
+npm install
+```
+
+### Scripts disponibles
+
+```bash
+# Lancer les tests
+npm test
+
+# Couverture des tests
+npm run test:coverage
+
+# Linter
+npm run lint
+
+# Formatter le code
+npm run format
+
+# Vérifier les types TypeScript
+npm run typecheck
+
+# Build de la librairie
+npm run build
+```
+
+### Structure du projet
+
+```
+metric-design/
+├── src/
+│   ├── index.ts        # Point d'entrée principal
+│   └── index.test.ts   # Tests unitaires
+├── dist/               # Fichiers compilés (générés)
+├── .github/
+│   └── workflows/
+│       └── ci.yml      # Configuration CI/CD
+├── package.json
+├── tsconfig.json       # Config TypeScript
+├── vite.config.ts      # Config Vite
+├── .eslintrc.cjs       # Config ESLint
+└── .prettierrc         # Config Prettier
+```
+
+## Contribuer
+
+Les contributions sont les bienvenues !
+
+1. Forkez le projet
+2. Créez une branche (`git checkout -b feature/ma-feature`)
+3. Commitez vos changements (`git commit -m 'Ajout de ma feature'`)
+4. Pushez (`git push origin feature/ma-feature`)
+5. Ouvrez une Pull Request
+
+### Règles de contribution
+
+- Tous les tests doivent passer
+- Respectez le style de code (`npm run lint` et `npm run format`)
+- Ajoutez des tests pour toute nouvelle fonctionnalité
+- Mettez à jour la documentation si besoin
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus d'informations.
+
+## Remerciements
+
+- Merci à tous les contributeurs
+- Inspiré par les meilleures pratiques de la communauté JavaScript/TypeScript
+
+---
+
+Créé avec ❤️ par [Dimitri Z. , Noah S. et Antoine SCH](https://github.com/noahs)
