@@ -1,42 +1,23 @@
 import React from 'react';
-import BarChart from './components/BarChart/BarChart';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import ProgressCircularTestPage from './components/ProgressCircular/ProgressCircularTest'; // Adapte le chemin si besoin
+import HomePage from './pages/HomePage';
 
-function App() {
-  const sampleData = [
-    { label: 'Jan', value: 40 },
-    { label: 'Feb', value: 80 },
-    { label: 'Mar', value: 65 },
-    { label: 'Apr', value: 90 },
-    { label: 'May', value: 55, color: '#f44336' },
-  ];
-
-  const thresholds = [
-    { value: 70, label: 'Objectif', color: 'red', strokeWidth: 2 },
-    { value: 50, label: 'Moyenne', color: 'orange', strokeWidth: 1 },
-  ];
-
+const App: React.FC = () => {
   return (
-    <>
-      <div style={{ padding: 20 }}>
-        <h2>Bar Chart vertical avec seuils et export</h2>
-        <BarChart
-          data={sampleData}
-          width={700}
-          height={350}
-          thresholds={thresholds}
+    <BrowserRouter>
+      <Navigation />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route
+          path='/progress-circular-test'
+          element={<ProgressCircularTestPage />}
         />
-
-        <h2 style={{ marginTop: 40 }}>Bar Chart horizontal</h2>
-        <BarChart
-          data={sampleData}
-          width={700}
-          height={350}
-          isHorizontal
-          thresholds={thresholds}
-        />
-      </div>
-    </>
+        {/* Ajoute d’autres routes ici si besoin */}
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
