@@ -32,6 +32,16 @@ const Navigation = () => {
         >
           Test Progress Circular
         </Link>
+        <Link
+          to='/progress-linear-test'
+          style={{
+            textDecoration: 'none',
+            color: '#0066cc',
+            fontWeight: 'bold',
+          }}
+        >
+          Test Progress Linear
+        </Link>
       </div>
     </nav>
   );
