@@ -1,13 +1,15 @@
 import { test, expect } from '@playwright/test';
 
-test('Button apparence', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+test.describe('Button visual regression', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('http://localhost:3000');
+    await page.getByTestId('button').waitFor({ state: 'visible' });
+  });
 
-  // Attendre que le bouton soit visible (rendu complet)
-  await page.waitForSelector('[data-testid="button"]', { state: 'visible' });
-
-  const bouton = await page.locator('[data-testid="button"]');
-  expect(await bouton.screenshot()).toMatchSnapshot('button.png', {
-    threshold: 0.5,
+  test('apparence par défaut', async ({ page }) => {
+    const bouton = await page.getByTestId('button');
+    expect(await bouton.screenshot()).toMatchSnapshot('button.png', {
+      threshold: 0.5,
+    });
   });
 });
