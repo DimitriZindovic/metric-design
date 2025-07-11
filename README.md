@@ -15,6 +15,23 @@ npm install @dimitrizindovic/metric-design
 
 ### Basic Import
 
+#### Aperçu visuel des composants
+
+Voici quelques exemples visuels des composants principaux. Les captures d'écran sont disponibles dans le dossier `assets` du projet.
+
+
+##### ProgressLinear
+
+![ProgressLinear Example](public/assets/linear-bar.png)
+
+##### ProgressCircular
+
+![ProgressCircular Example](public/assets/circular-progress.png)
+
+##### BarChart
+
+![BarChart Example](public/assets/bar-chart.png)
+
 ```typescript
 import {
   Button,
