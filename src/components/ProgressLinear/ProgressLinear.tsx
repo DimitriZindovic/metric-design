@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface ProgressLinearProps {
+interface ProgressLinearProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: number | string;
   height?: number;
   progress: number;
@@ -9,6 +9,7 @@ interface ProgressLinearProps {
   animated?: boolean;
   animationSpeed?: number;
   showPercentage?: boolean;
+  disableAnimation?: boolean;
 }
 
 const ProgressLinear: React.FC<ProgressLinearProps> = ({
@@ -20,9 +21,14 @@ const ProgressLinear: React.FC<ProgressLinearProps> = ({
   animated = false,
   animationSpeed = 1.5,
   showPercentage = false,
+  disableAnimation = false,
+  ...rest
 }) => {
   return (
-    <div style={{ width: size, display: 'flex', alignItems: 'center', gap: 8 }}>
+    <div
+      style={{ width: size, display: 'flex', alignItems: 'center', gap: 8 }}
+      {...rest}
+    >
       <div
         style={{
           flexGrow: 1,
@@ -33,7 +39,7 @@ const ProgressLinear: React.FC<ProgressLinearProps> = ({
           position: 'relative',
         }}
       >
-        {animated ? (
+        {animated && !disableAnimation ? (
           <div
             style={{
               position: 'absolute',
@@ -51,7 +57,7 @@ const ProgressLinear: React.FC<ProgressLinearProps> = ({
               height: '100%',
               backgroundColor: progressColor,
               borderRadius: height / 2,
-              transition: 'width 0.4s ease',
+              transition: disableAnimation ? 'none' : 'width 0.4s ease',
             }}
           />
         )}
