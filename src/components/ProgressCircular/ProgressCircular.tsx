@@ -1,17 +1,20 @@
 import React from 'react';
 
 interface ProgressCircularProps {
-  size?: number; // diamètre total du cercle en px
-  strokeWidth?: number; // épaisseur du trait
-  progress: number; // progression 0-100
-  circleOneStroke?: string; // couleur cercle fond
-  circleTwoStroke?: string; // couleur progression
-  showPercentage?: boolean; // afficher le % au centre
-  percentageFontSize?: number; // taille police pourcentage en px (optionnel)
+  size?: number;
+  strokeWidth?: number;
+  progress: number;
+  circleOneStroke?: string;
+  circleTwoStroke?: string;
+  showPercentage?: boolean;
+  percentageFontSize?: number;
   disableAnimation?: boolean;
 }
 
-const ProgressCircular: React.FC<ProgressCircularProps> = ({
+// Permet de passer data-testid (et toutes les props SVG natives) sans erreur TypeScript
+const ProgressCircular: React.FC<
+  ProgressCircularProps & React.SVGProps<SVGSVGElement>
+> = ({
   size = 120,
   strokeWidth = 10,
   progress,
@@ -19,6 +22,8 @@ const ProgressCircular: React.FC<ProgressCircularProps> = ({
   circleTwoStroke = '#3b82f6',
   showPercentage = true,
   percentageFontSize,
+  disableAnimation = false,
+  ...rest // récupère data-testid et tout le reste
 }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -32,6 +37,7 @@ const ProgressCircular: React.FC<ProgressCircularProps> = ({
       aria-valuenow={progress}
       aria-valuemin={0}
       aria-valuemax={100}
+      {...rest} // <-- c'est ici que data-testid passe sur le <svg>
     >
       <circle
         stroke={circleOneStroke}
@@ -51,7 +57,9 @@ const ProgressCircular: React.FC<ProgressCircularProps> = ({
         cy={size / 2}
         strokeDasharray={circumference}
         strokeDashoffset={strokeDashoffset}
-        style={{ transition: 'stroke-dashoffset 0.5s ease' }}
+        style={{
+          transition: disableAnimation ? 'none' : 'stroke-dashoffset 0.5s ease',
+        }}
         transform={`rotate(-90 ${size / 2} ${size / 2})`}
       />
       {showPercentage && (
