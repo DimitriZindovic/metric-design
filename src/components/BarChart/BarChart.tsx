@@ -35,9 +35,8 @@ const BarChart: React.FC<BarChartProps> = ({
   const svgRef = useRef<SVGSVGElement>(null);
 
   const max = maxValue ?? Math.max(...data.map(d => d.value));
-  const margin = 40; // marge pour axes et labels
+  const margin = 35;
 
-  // Fonction pour exporter SVG
   const exportSVG = () => {
     if (!svgRef.current) return;
     const svgData = new XMLSerializer().serializeToString(svgRef.current);
@@ -248,7 +247,7 @@ const BarChart: React.FC<BarChartProps> = ({
                 </text>
                 <text
                   y={y + barWidth / 2 + 5}
-                  x={margin + barLength + 10}
+                  x={margin + barLength + 4}
                   fontSize={12}
                   fill='#333'
                   textAnchor='start'
